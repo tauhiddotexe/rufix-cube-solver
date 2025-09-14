@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+main {
+    padding: 40px;
+}
+
+.cube-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.cube-2d {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.face-row {
+    display: flex;
+    gap: 5px;
+}
+
+.face {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    width: 120px;
+    height: 120px;
+    border: 3px solid #333;
+    border-radius: 8px;
+    padding: 5px;
+    background: #333;
+}
+
+.face-placeholder {
+    width: 120px;
+    height: 120px;
+    margin: 3px;
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #666;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #f0f0f0;
+}
+
+.square:hover {
+    transform: scale(1.05);
+    border-color: #333;
+}
+
+.square.white { background-color: #ffffff; }
+.square.yellow { background-color: #ffd700; }
+.square.orange { background-color: #ff8c00; }
+.square.red { background-color: #ff0000; }
+.square.green { background-color: #00ff00; }
+.square.blue { background-color: #0000ff; }
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.color-palette {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.color-option.selected {
+    border-color: #4facfe;
+    border-width: 4px;
+    transform: scale(1.1);
+}
+
+.color-option.white { background-color: #ffffff; }
+.color-option.yellow { background-color: #ffd700; }
+.color-option.orange { background-color: #ff8c00; }
+.color-option.red { background-color: #ff0000; }
+.color-option.green { background-color: #00ff00; }
+.color-option.blue { background-color: #0000ff; }
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+#clear-btn {
+    background: #ff6b6b;
+    color: white;
+}
+
+#clear-btn:hover {
+    background: #ff5252;
+}
+
+#reset-btn {
+    background: #ffa726;
+    color: white;
+}
+
+#reset-btn:hover {
+    background: #ff9800;
+}
+
+#scramble-btn {
+    background: #ab47bc;
+    color: white;
+}
+
+#scramble-btn:hover {
+    background: #9c27b0;
+}
+
+.solve-btn {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+}
+
+.solve-btn:hover {
+    background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+}
+
+.solve-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.solution-panel {
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 30px;
+    display: none;
+}
+
+.solution-panel.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.solution-panel h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.solution-moves {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    line-height: 1.6;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.move {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.solution-info {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.loading {
+    text-align: center;
+    color: #007bff;
+    font-style: italic;
+}
+
+.error {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    main {
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .face {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .face-placeholder {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .color-option {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 80px;
+    }
+    
+    .solve-btn {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .face {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .face-placeholder {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 200px;
+    }
+}
