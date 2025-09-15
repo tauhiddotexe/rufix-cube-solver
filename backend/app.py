@@ -5,7 +5,7 @@ import random
 import os
 from cube_solver import CubeSolver
 
-app = Flask(__name__, static_folder='../frontend', template_folder='../frontend')
+app = Flask(__name__, static_folder='frontend', template_folder='frontend')
 CORS(app)
 
 # Initialize the cube solver
@@ -13,11 +13,11 @@ solver = CubeSolver()
 
 @app.route('/')
 def index():
-    return send_from_directory('../frontend', 'index.html')
+    return send_from_directory('frontend', 'index.html')
 
 @app.route('/<path:path>')
 def serve_static(path):
-    return send_from_directory('../frontend', path)
+    return send_from_directory('frontend', path)
 
 @app.route('/api/solve', methods=['POST'])
 def solve_cube():
