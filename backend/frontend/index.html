@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RuFix - 3x3 Cube Solver</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RuFix – 3x3 Cube Solver</h1>
+            <p>Set your cube colors and click solve to get the solution!</p>
+        </header>
+
+        <main>
+            <div class="cube-container">
+                <div class="cube-2d">
+                    <div class="face-row">
+                        <div class="face-placeholder"></div>
+                        <div class="face" data-face="U" id="face-U">
+                            <div class="square" data-face="U" data-index="0"></div>
+                            <div class="square" data-face="U" data-index="1"></div>
+                            <div class="square" data-face="U" data-index="2"></div>
+                            <div class="square" data-face="U" data-index="3"></div>
+                            <div class="square" data-face="U" data-index="4"></div>
+                            <div class="square" data-face="U" data-index="5"></div>
+                            <div class="square" data-face="U" data-index="6"></div>
+                            <div class="square" data-face="U" data-index="7"></div>
+                            <div class="square" data-face="U" data-index="8"></div>
+                        </div>
+                        <div class="face-placeholder"></div>
+                        <div class="face-placeholder"></div>
+                    </div>
+                    
+                    <div class="face-row">
+                        <div class="face" data-face="L" id="face-L">
+                            <div class="square" data-face="L" data-index="0"></div>
+                            <div class="square" data-face="L" data-index="1"></div>
+                            <div class="square" data-face="L" data-index="2"></div>
+                            <div class="square" data-face="L" data-index="3"></div>
+                            <div class="square" data-face="L" data-index="4"></div>
+                            <div class="square" data-face="L" data-index="5"></div>
+                            <div class="square" data-face="L" data-index="6"></div>
+                            <div class="square" data-face="L" data-index="7"></div>
+                            <div class="square" data-face="L" data-index="8"></div>
+                        </div>
+                        
+                        <div class="face" data-face="F" id="face-F">
+                            <div class="square" data-face="F" data-index="0"></div>
+                            <div class="square" data-face="F" data-index="1"></div>
+                            <div class="square" data-face="F" data-index="2"></div>
+                            <div class="square" data-face="F" data-index="3"></div>
+                            <div class="square" data-face="F" data-index="4"></div>
+                            <div class="square" data-face="F" data-index="5"></div>
+                            <div class="square" data-face="F" data-index="6"></div>
+                            <div class="square" data-face="F" data-index="7"></div>
+                            <div class="square" data-face="F" data-index="8"></div>
+                        </div>
+                        
+                        <div class="face" data-face="R" id="face-R">
+                            <div class="square" data-face="R" data-index="0"></div>
+                            <div class="square" data-face="R" data-index="1"></div>
+                            <div class="square" data-face="R" data-index="2"></div>
+                            <div class="square" data-face="R" data-index="3"></div>
+                            <div class="square" data-face="R" data-index="4"></div>
+                            <div class="square" data-face="R" data-index="5"></div>
+                            <div class="square" data-face="R" data-index="6"></div>
+                            <div class="square" data-face="R" data-index="7"></div>
+                            <div class="square" data-face="R" data-index="8"></div>
+                        </div>
+                        
+                        <div class="face" data-face="B" id="face-B">
+                            <div class="square" data-face="B" data-index="0"></div>
+                            <div class="square" data-face="B" data-index="1"></div>
+                            <div class="square" data-face="B" data-index="2"></div>
+                            <div class="square" data-face="B" data-index="3"></div>
+                            <div class="square" data-face="B" data-index="4"></div>
+                            <div class="square" data-face="B" data-index="5"></div>
+                            <div class="square" data-face="B" data-index="6"></div>
+                            <div class="square" data-face="B" data-index="7"></div>
+                            <div class="square" data-face="B" data-index="8"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="face-row">
+                        <div class="face-placeholder"></div>
+                        <div class="face" data-face="D" id="face-D">
+                            <div class="square" data-face="D" data-index="0"></div>
+                            <div class="square" data-face="D" data-index="1"></div>
+                            <div class="square" data-face="D" data-index="2"></div>
+                            <div class="square" data-face="D" data-index="3"></div>
+                            <div class="square" data-face="D" data-index="4"></div>
+                            <div class="square" data-face="D" data-index="5"></div>
+                            <div class="square" data-face="D" data-index="6"></div>
+                            <div class="square" data-face="D" data-index="7"></div>
+                            <div class="square" data-face="D" data-index="8"></div>
+                        </div>
+                        <div class="face-placeholder"></div>
+                        <div class="face-placeholder"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="color-palette">
+                    <div class="color-option white" data-color="W"></div>
+                    <div class="color-option yellow" data-color="Y"></div>
+                    <div class="color-option orange" data-color="O"></div>
+                    <div class="color-option red" data-color="R"></div>
+                    <div class="color-option green" data-color="G"></div>
+                    <div class="color-option blue" data-color="B"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="clear-btn" class="btn">Clear</button>
+                    <button id="reset-btn" class="btn">Reset</button>
+                    <button id="scramble-btn" class="btn">Scramble</button>
+                    <button id="solve-btn" class="btn solve-btn">Solve</button>
+                </div>
+            </div>
+
+            <div class="solution-panel" id="solution-panel">
+                <h3>Solution Steps:</h3>
+                <div class="solution-moves" id="solution-moves"></div>
+                <div class="solution-info" id="solution-info"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/cube.js"></script>
+    <script src="js/solver.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
